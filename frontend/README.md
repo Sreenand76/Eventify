@@ -13,8 +13,6 @@ With numerous events being organized in the college, it becomes difficult for ev
 ### The Solution
 tracking how many people are attending event ,for easier management of event while keeping the students updated about the upcoming events in our college.
 
-## Technical Details
-
 ### Technologies Used
 - **React**
 - **Tailwind CSS**
