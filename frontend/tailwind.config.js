@@ -2,7 +2,6 @@ import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
 
 export default {
   content: ["./src/**/*.{js,jsx}"],
-  darkMode: "class",
   theme: {
     extend: {
       animation: {
