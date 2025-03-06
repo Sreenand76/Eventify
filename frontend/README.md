@@ -1,29 +1,36 @@
-# AI Summarizer
+# Eventify
 
-AI Summarizer is a web application that uses OpenAI's API to generate concise summaries of user-provided text or URLs. Built with React, it provides an intuitive interface for summarizing lengthy content with ease.
+### Team Members
+- Member 1: Sreenand
+- Member 2: Manas Kunar
 
----
+### Project Description
+It is project based on upcoming event happening in our college ,where students can mark their attendance for their interested events
 
-## 🛠️ **Technologies Used**
+### The Problem Statement
+With numerous events being organized in the college, it becomes difficult for event organizers to track the participation of students and for students to keep a record of the events they are attending. The challenge is to provide an efficient and easy-to-use platform where students can mark their attendance for the events they are interested in. The system should allow students to sign up for events, mark attendance, and provide event organizers with a consolidated view of attendees, improving event management and ensuring accurate attendance tracking
 
-- **Frontend**: React.js, Tailwind CSS
-- **Backend**: OpenAI API for text summarization
-- **Deployment**: Vercel (or any other platform of your choice)
+### The Solution
+tracking how many people are attending event ,for easier management of event while keeping the students updated about the upcoming events in our college.
 
----
+## Technical Details
 
-## 🎯 **Features**
+### Technologies Used
+- **React**
+- **Tailwind CSS**
 
-- **Text Summarization**: Enter a paragraph or block of text to get a concise summary.
-- **URL Summarization**: Paste a URL, and the app extracts and summarizes its content.
-- **Responsive Design**: Works seamlessly on desktop and mobile devices.
-- **Customizable API Key**: Use your own OpenAI API key for personalized usage.
 
----
+##### Installation
 
-## 🚀 **Getting Started**
+To install the necessary dependencies for the project, use the following commands:
 
-### 1. **Clone the Repository**
 ```bash
-git clone https://github.com/yourusername/ai-summarizer.git
-cd ai-summarizer
+# Clone the repository
+git clone [repository_url]
+
+# Navigate into the project directory
+cd [project_directory]
+
+# Install the dependencies
+npm install
+
