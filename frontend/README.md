@@ -24,10 +24,10 @@ To install the necessary dependencies for the project, use the following command
 
 ```bash
 # Clone the repository
-git clone [repository_url]
+git clone https://github.com/Sreenand76/Eventify.git
 
 # Navigate into the project directory
-cd [project_directory]
+cd frontend
 
 # Install the dependencies
 npm install
