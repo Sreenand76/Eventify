@@ -19,50 +19,46 @@ const Registration = () => {
     setRegistration({ ...registration, [e.target.name]: e.target.value });
   };
 
-  const handleRegistration = async (e) => {
+  const handleRegistration = (e) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch("https://your-api-endpoint.com/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(registration),
-      });
+    // Check if the user already exists in localStorage
+    const existingUser = localStorage.getItem("users");
+    const users = existingUser ? JSON.parse(existingUser) : [];
 
-      if (!response.ok) {
-        throw new Error("Failed to register. Please try again.");
-      }
+    // Check if the email already exists
+    const userExists = users.some((user) => user.email === registration.email);
 
-      const result = await response.json();
-      setSuccessMessage(result.message || "Registration successful!");
-      setErrorMessage("");
-
-      setRegistration({
-        name: "",
-        email: "",
-        password: "",
-        address: "",
-        phone: "",
-      });
-
-      toast.success("Registration successful!", {
-        position: "top-right",
-        autoClose: 2000,
-        theme: "light",
-      });
-
-      navigate("/login");
-    } catch (error) {
+    if (userExists) {
+      setErrorMessage("Email already registered. Please login.");
       setSuccessMessage("");
-      setErrorMessage(`Registration error: ${error.message}`);
+      return;
     }
 
-    setTimeout(() => {
-      setErrorMessage("");
-      setSuccessMessage("");
-    }, 5000);
+    // Save the registration data to localStorage
+    users.push(registration);
+    localStorage.setItem("users", JSON.stringify(users));
+
+    setSuccessMessage("Registration successful!");
+    setErrorMessage("");
+
+    // Reset the form fields
+    setRegistration({
+      name: "",
+      email: "",
+      password: "",
+      address: "",
+      phone: "",
+    });
+
+    toast.success("Registration successful!", {
+      position: "top-right",
+      autoClose: 2000,
+      theme: "light",
+    });
+
+    // Redirect to login page
+    navigate("/login");
   };
 
   return (
@@ -126,4 +122,5 @@ const Registration = () => {
 };
 
 export default Registration;
+
 

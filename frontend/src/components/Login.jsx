@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoggedIn, setLoggedIn] = useState(false)
   const [login, setLogin] = useState({
     email: "",
     password: "",
@@ -15,39 +16,38 @@ const Login = () => {
     setLogin({ ...login, [e.target.name]: e.target.value });
   };
 
-  const loginUser = async (loginData) => {
-    try {
-      const response = await fetch("http://your-api-url.com/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(loginData),
-      });
-
-      if (!response.ok) {
-        throw new Error("Invalid credentials");
-      }
-
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      return null;
+  // Simulated login with localStorage
+  const loginUser = (loginData) => {
+    const storedUsers = JSON.parse(localStorage.getItem("users")); 
+    if (!storedUsers || storedUsers.length === 0) {
+      return null; // No users found
     }
+
+    // Check if credentials match any stored user
+    const user = storedUsers.find(
+      (user) => user.email === loginData.email && user.password === loginData.password
+    );
+
+    if (user) {
+      return { token: "mock-auth-token" }; // Simulated token
+    }
+    return null; // Invalid credentials
   };
 
   const handleLogin = (token) => {
     localStorage.setItem("authToken", token);
+    localStorage.setItem("currentUser", login.email)
+    localStorage.setItem("passwword",login.password)
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const success = await loginUser(login);
+    const success = loginUser(login);
 
     if (success) {
       const token = success.token;
       handleLogin(token);
-      navigate("/");
+      navigate("/"); // Redirect to homepage or dashboard
       toast.success("Login successful", {
         position: "top-right",
         autoClose: 2000,
